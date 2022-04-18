@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <Version>$(PkgData)</Version>
+    <Authors>Peyman Ranjbar &lt;peymanpn@yahoo.com&gt;</Authors>
+    <SourceRevisionId>$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</SourceRevisionId>
+    <Copyright>© $([System.DateTime]::UtcNow.ToString("yyyy")) Peyman.R</Copyright>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package info">
+    <Description>Datebase abstraction and helper classes</Description>
+    <PublishUrl>https://www.nuget.org/packages/Pdsr.Hosting</PublishUrl>
+    <PackageTags>PdsrData</PackageTags>
+    <PackageId>Pdsr.Data</PackageId>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pdsr.Core.Extensions\Pdsr.Core.Extensions.csproj" />
+    <ProjectReference Include="..\Pdsr.Core\Pdsr.Core.csproj" />
+  </ItemGroup>
+
+</Project>

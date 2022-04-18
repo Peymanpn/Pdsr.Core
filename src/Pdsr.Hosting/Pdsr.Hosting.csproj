@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>$(PkgHosting)</Version>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+    <Authors>Peyman Ranjbar &lt;peymanpn@yahoo.com&gt;</Authors>
+    <SourceRevisionId>$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</SourceRevisionId>
+    <Copyright>© $([System.DateTime]::UtcNow.ToString("yyyy")) Peyman.R</Copyright>
+    <Description>Background service tools</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package info">
+    <Description>HostingServices and TaskQueue</Description>
+    <PublishUrl>https://www.nuget.org/packages/Pdsr.Hosting</PublishUrl>
+    <PackageTags>PdsrHosting</PackageTags>
+    <PackageId>Pdsr.Hosting</PackageId>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pdsr.Core\Pdsr.Core.csproj" />
+  </ItemGroup>
+
+</Project>

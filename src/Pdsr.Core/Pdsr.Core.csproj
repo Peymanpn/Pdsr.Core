@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>$(PkgCore)</Version>
+    <Nullable>enable</Nullable>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Peyman Ranjbar &lt;peymanpn@yahoo.com&gt;</Authors>
+    <SourceRevisionId>$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</SourceRevisionId>
+    <Copyright>$([System.DateTime]::UtcNow.ToString("yyyy")) Peyman.R</Copyright>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package info">
+    <Description>Base classes for unifying user in dependant projects</Description>
+    <PublishUrl>https://www.nuget.org/packages/Pdsr.Core</PublishUrl>
+    <RepositoryUrl>https://github.com/Peymanpn/Pdsr.Core</RepositoryUrl>
+    <PackageTags>Pdsr Core Libs;Pdsr User;Pdsr UserManagement</PackageTags>
+    <PackageId>Pdsr.Core</PackageId>
+  </PropertyGroup>
+</Project>
