@@ -13,7 +13,7 @@ namespace Pdsr.Hosting;
 /// </summary>
 public interface IBackgroundTaskQueue : IBackgroundTaskQueue<string, PdsrUserBase<string>>
 {
-   
+
 }
 
 /// <summary>
@@ -46,7 +46,7 @@ public interface IBackgroundTaskQueue<TKey, TUser>
     Task<Func<IServiceScope, CancellationToken, Task>> DequeueScopedWorkItemAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Queu a User Specifiec Task for systems already implemented <see cref="IUserServiceBase"/>,
+    /// Queues a User Specifiec Task for systems already implemented <see cref="Pdsr.Core.User.IUserServiceBase{TKey, TUser}"/>,
     /// <see cref="PdsrUserBase"/> and <see cref="ISubjectOwnable"/> which is a superset of ISessionBase
     /// </summary>
     /// <param name="sub"></param>
@@ -91,7 +91,7 @@ public interface IUserBackgroundTaskQueue<TKey, TUser>
     where TUser : PdsrUserBase<TKey>, ISubjectOwnable
 {
     /// <summary>
-    /// Queues a User Specifiec Task for systems already implemented <see cref="IUSerService"/>,
+    /// Queues a User Specifiec Task for systems already implemented <see cref="Pdsr.Core.User.IUserServiceBase{TKey, TUser}"/>,
     /// <see cref="PdsrUserBase"/> and <see cref="ISubjectOwnable"/> which is a superset of ISessionBase and Session
     /// </summary>
     /// <param name="sub"></param>

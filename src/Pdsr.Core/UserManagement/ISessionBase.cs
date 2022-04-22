@@ -32,7 +32,7 @@ public interface ISessionBase
     /// </summary>
     /// <typeparam name="TSession">The type of Session, implementing <see cref="ISessionBase"/></typeparam>
     /// <param name="subjectId">User's subject id</param>
-    /// <param name="nonInteractively">if the session going to be run in the background</param>
+    /// <param name="nonInteractive">if the session going to be run in the background</param>
     /// <returns>A created instance of session</returns>
     TSession Setup<TSession>(string subjectId, bool nonInteractive = true) where TSession : ISessionBase;
 }

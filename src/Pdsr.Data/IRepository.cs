@@ -84,6 +84,7 @@ public interface IRepository<TEntity> where TEntity : IBaseEntity
     /// Get entity by identifier
     /// </summary>
     /// <param name="id">Identifier</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>Entity</returns>
     Task<TEntity?> GetByIdAsync(object id, CancellationToken cancellationToken = default);
 
@@ -91,49 +92,56 @@ public interface IRepository<TEntity> where TEntity : IBaseEntity
     /// Insert entity
     /// </summary>
     /// <param name="entity">Entity</param>
+    /// <param name="cancellationToken"></param>
     Task InsertAsync(TEntity entity, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Insert entities
     /// </summary>
     /// <param name="entities">Entities</param>
+    /// <param name="cancellationToken"></param>
     Task InsertAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Update entity
     /// </summary>
     /// <param name="entity">Entity</param>
+    /// <param name="cancellationToken"></param>
     Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Update entities
     /// </summary>
     /// <param name="entities">Entities</param>
+    /// <param name="cancellationToken"></param>
     Task UpdateAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Delete entity
     /// </summary>
     /// <param name="entity">Entity</param>
+    /// <param name="cancellationToken"></param>
     Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Delete entities
     /// </summary>
     /// <param name="entities">Entities</param>
+    /// <param name="cancellationToken"></param>
     Task DeleteAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Delete entiity by Id
     /// </summary>
     /// <param name="entityId"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task DeleteByIdAsync(int entityId, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Delete entities by Ids
     /// </summary>
-    /// <param name="enditiyIds"></param>
+    /// <param name="entitiyIds"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task DeleteByIdAsync(IEnumerable<int> entitiyIds, CancellationToken cancellationToken = default);

@@ -40,6 +40,7 @@ public class PdsrEntityTypeConfiguration<TEntity> : IMappingConfiguration, IEnti
 /// Data Type Configuration for mappings
 /// </summary>
 /// <typeparam name="TEntity"></typeparam>
+/// <typeparam name="TKey">Type of entity Key</typeparam>
 public class PdsrEntityTypeConfiguration<TKey, TEntity> : IMappingConfiguration, IEntityTypeConfiguration<TEntity>
     where TEntity : BaseEntity<TKey>
     where TKey : notnull

@@ -28,32 +28,6 @@ public interface IDbContext
     string GenerateCreateScript();
 
     /// <summary>
-    /// creates a LINQ query
-    /// </summary>
-    /// <typeparam name="TQuery"></typeparam>
-    /// <param name="sql"></param>
-    /// <returns></returns>
-    //    IQueryable<TQuery> QueryFromSql<TQuery>(string sql) where TQuery : class;
-
-    /// <summary>
-    /// returns a set of queryable data by raw sql command
-    /// </summary>
-    /// <typeparam name="TEntity"></typeparam>
-    /// <param name="sql"></param>
-    /// <returns></returns>
-    //     IQueryable<TEntity> EntityFromSql<TEntity>(string sql, params object[] parameters) where TEntity : BaseEntity;
-
-    /// <summary>
-    /// executes a raw sql command
-    /// </summary>
-    /// <param name="sqlString"></param>
-    /// <param name="doNotEnsureTransaction"></param>
-    /// <param name="timeout"></param>
-    /// <param name="parameters"></param>
-    /// <returns></returns>
-    // int ExecuteSqlCommand(RawSqlString sqlString, bool doNotEnsureTransaction = false, int? timeout = null, params object[] parameters);
-
-    /// <summary>
     /// Detachs an entity from context
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>

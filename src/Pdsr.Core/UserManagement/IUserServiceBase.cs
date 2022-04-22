@@ -1,7 +1,4 @@
 using Pdsr.Core.Domain;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Pdsr.Core.User;
 
@@ -15,14 +12,11 @@ public interface IUserServiceBase<TUser> : IUserServiceBase<string, TUser>
 
 }
 
-
-
-
-
 /// <summary>
 /// Base service for manage Users
 /// </summary>
 /// <typeparam name="TUser">an SubjectId user object <see cref="ISubjectOwnable"/></typeparam>
+/// <typeparam name="TKey">Type of entity Key</typeparam>
 public interface IUserServiceBase<TKey, TUser>
     where TUser : PdsrUserBase<TKey>, ISubjectOwnable
     where TKey : notnull

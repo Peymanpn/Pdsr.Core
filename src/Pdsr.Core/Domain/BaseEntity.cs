@@ -5,7 +5,7 @@ namespace Pdsr.Core.Domain;
 /// <summary>
 /// Base Entity
 /// All derived children are having equality compare based on Id field.
-/// override <see cref="EqualsCore(BaseEntity)"/> and <see cref="GetHashCodeCore"/> to change the contract
+/// override <see cref="GetHashCodeCore"/> to change the contract
 /// </summary>
 public abstract record BaseEntity : IEquatable<BaseEntity>, IBaseEntity
 {
