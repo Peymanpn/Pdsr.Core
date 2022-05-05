@@ -38,6 +38,7 @@ public class BackgroundTaskQueue : IBackgroundTaskQueue
         _signal.Release();
     }
 
+    /// <inheritdoc/>
     public async Task<Func<CancellationToken, Task>> DequeueAsync(
         CancellationToken cancellationToken)
     {
@@ -53,6 +54,7 @@ public class BackgroundTaskQueue : IBackgroundTaskQueue
         return workItem;
     }
 
+    /// <inheritdoc/>
     public void QueueBackgroundProviderWorkItem(Func<IServiceProvider, CancellationToken, Task> workItem)
     {
         if (workItem == null)
@@ -63,6 +65,7 @@ public class BackgroundTaskQueue : IBackgroundTaskQueue
         _signalProvider.Release();
     }
 
+    /// <inheritdoc/>
     public async Task<Func<IServiceProvider, CancellationToken, Task>> DequeueProviderTaskAsync(CancellationToken cancellationToken)
     {
         await _signalProvider.WaitAsync(cancellationToken);
@@ -100,7 +103,7 @@ public class BackgroundTaskQueue : IBackgroundTaskQueue
         return workItem;
     }
 
-
+    /// <inheritdoc/>
     public void QueueUserWorkItem(string sub, Func<IServiceProvider, PdsrUserBase<string>, CancellationToken, Task> workItem)
     {
         if (string.IsNullOrEmpty(sub) || workItem == null)
@@ -125,7 +128,11 @@ public class BackgroundTaskQueue : IBackgroundTaskQueue
 
 
 
-
+/// <summary>
+/// User specific Tasl Queue
+/// </summary>
+/// <typeparam name="TKey">User's Key type. it is usally same as subject id.<see cref="PdsrUserBase{TKey}.SubjectId"/></typeparam>
+/// <typeparam name="TUser">The user type being used to load during queue work execution.<see cref="PdsrUserBase{TKey}"/></typeparam>
 public class BackgroundTaskQueue<TKey, TUser> : IBackgroundTaskQueue<TKey, TUser>
     where TKey : notnull
     where TUser : PdsrUserBase<TKey>
@@ -147,6 +154,7 @@ public class BackgroundTaskQueue<TKey, TUser> : IBackgroundTaskQueue<TKey, TUser
     private readonly SemaphoreSlim _signalScoped = new SemaphoreSlim(0);
     private readonly SemaphoreSlim _signalUser = new SemaphoreSlim(0);
 
+    /// <inheritdoc/>
     public void QueueBackgroundWorkItem(Func<CancellationToken, Task> workItem)
     {
         if (workItem == null)
@@ -158,6 +166,7 @@ public class BackgroundTaskQueue<TKey, TUser> : IBackgroundTaskQueue<TKey, TUser
         _signal.Release();
     }
 
+    /// <inheritdoc/>
     public async Task<Func<CancellationToken, Task>> DequeueAsync(
         CancellationToken cancellationToken)
     {
@@ -173,7 +182,7 @@ public class BackgroundTaskQueue<TKey, TUser> : IBackgroundTaskQueue<TKey, TUser
 
         return workItem;
     }
-
+    /// <inheritdoc/>
     public void QueueBackgroundProviderWorkItem(Func<IServiceProvider, CancellationToken, Task> workItem)
     {
         if (workItem == null)
@@ -184,6 +193,7 @@ public class BackgroundTaskQueue<TKey, TUser> : IBackgroundTaskQueue<TKey, TUser
         _signalProvider.Release();
     }
 
+    /// <inheritdoc/>
     public async Task<Func<IServiceProvider, CancellationToken, Task>> DequeueProviderTaskAsync(CancellationToken cancellationToken)
     {
         await _signalProvider.WaitAsync(cancellationToken);
@@ -196,6 +206,7 @@ public class BackgroundTaskQueue<TKey, TUser> : IBackgroundTaskQueue<TKey, TUser
         return workItem;
     }
 
+    /// <inheritdoc/>
     public void QueueBackgroundScopedWorkItem(Func<IServiceScope, CancellationToken, Task> workItem)
     {
         if (workItem == null)
@@ -206,6 +217,7 @@ public class BackgroundTaskQueue<TKey, TUser> : IBackgroundTaskQueue<TKey, TUser
         _signalScoped.Release();
     }
 
+    /// <inheritdoc/>
     public async Task<Func<IServiceScope, CancellationToken, Task>> DequeueScopedWorkItemAsync(CancellationToken cancellationToken = default)
     {
         await _signalScoped.WaitAsync(cancellationToken);
@@ -218,7 +230,7 @@ public class BackgroundTaskQueue<TKey, TUser> : IBackgroundTaskQueue<TKey, TUser
         return workItem;
     }
 
-
+    /// <inheritdoc/>
     public void QueueUserWorkItem(string sub, Func<IServiceProvider, TUser, CancellationToken, Task> workItem)
     {
         if (string.IsNullOrEmpty(sub) || workItem == null)
@@ -232,6 +244,7 @@ public class BackgroundTaskQueue<TKey, TUser> : IBackgroundTaskQueue<TKey, TUser
         _signalUser.Release();
     }
 
+    /// <inheritdoc/>
     public async Task<KeyValuePair<string, Func<IServiceProvider, TUser, CancellationToken, Task>>> DequeueUserTaskAsync(CancellationToken cancellationToken)
     {
         await _signalUser.WaitAsync(cancellationToken);

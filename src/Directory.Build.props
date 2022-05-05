@@ -25,10 +25,10 @@
     </PropertyGroup>
 
     <PropertyGroup Label="Package Versions">
-        <PkgCore>2.0.6</PkgCore>
-        <PkgData>2.1.9</PkgData>
-        <PkgCoreExtensions>1.2.5</PkgCoreExtensions>
-        <PkgHosting>1.11.4</PkgHosting>
+        <PkgCore>2.0.7</PkgCore>
+        <PkgData>2.1.10</PkgData>
+        <PkgCoreExtensions>1.2.6</PkgCoreExtensions>
+        <PkgHosting>1.11.5</PkgHosting>
     </PropertyGroup>
 
     <ItemGroup>

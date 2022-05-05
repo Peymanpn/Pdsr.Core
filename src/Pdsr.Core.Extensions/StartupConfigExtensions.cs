@@ -69,4 +69,30 @@ public static class StartupConfigExtensions
 
         return config;
     }
+
+    /// <summary>
+    /// Automatically uses the class name of <typeparamref name="TConfig"/> as section name and injects it to DI container as singleton.
+    /// It is equivalent to:
+    /// <code>
+    /// services.ConfigureStartupConfig<![CDATA[<SomeClass>]]>(configuration.GetSection(nameof(SomeClass)));
+    /// </code>
+    /// </summary>
+    /// <typeparam name="TConfig">The concerete class of <typeparamref name="ITConfig"/> interface.</typeparam>
+    /// <param name="services">The Microsoft.Extensions.DependencyInjection.IServiceCollection to add the service to</param>
+    /// <param name="configuration">The <see cref="IConfigurationSection"/> to instatiate <typeparamref name="TConfig"/> from.</param>
+    /// <param name="sectionNameIsTConfigName">Indicates if the configuration is sub-section or needs to be separated by GetSecion("section-name"). default: true.
+    /// If fales is provided it is the same as <see cref="ConfigureStartupConfig{TConfig}(IServiceCollection, IConfiguration)"/></param>
+    /// <returns>A reference to this instance after the configuration added to the DI container.</returns>
+    public static TConfig ConfigureStartupConfigSection<TConfig>(this IServiceCollection services, IConfiguration configuration, bool sectionNameIsTConfigName = true)
+      where TConfig : class, new()
+    {
+        if (sectionNameIsTConfigName)
+        {
+            return ConfigureStartupConfig<TConfig>(services, configuration.GetSection(nameof(TConfig)));
+        }
+        else
+        {
+            return ConfigureStartupConfig<TConfig>(services, configuration);
+        }
+    }
 }

@@ -31,8 +31,14 @@ namespace Pdsr.Core.Domain
         /// </summary>
         public DateTimeOffset UpdatedAtUtc { get; set; }
 
+        /// <summary>
+        /// Uses SubjectId as a mean to compare two <see cref="PdsrUserBase{TKey}"/> entities.
+        /// If <see cref="SubjectId"/> of two entities are equal, then both entities should be equal.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public virtual bool Equals(
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if NETSTANDARD2_0 || NETSTANDARD2_1 // TODO: use nullable for ISubjectOwnable in case of upgrading to NETSTANDARD2.1
         ISubjectOwnable
 #else
         ISubjectOwnable?
@@ -42,11 +48,15 @@ namespace Pdsr.Core.Domain
             if (other is null) return false;
             return SubjectId == other.SubjectId;
         }
+
+
     }
 
 
     /// <summary>
     /// Base User for unifying user across dependant libs and projects
+    /// Default <see cref="PdsrUserBase{TKey}"/> entity with <see cref="string"/> as TKey.
+    /// Shorthand for <code>PdsrUserBase{string}</code>
     /// </summary>
     public abstract record PdsrUserBase : PdsrUserBase<string>, ISubjectOwnable, IEquatable<ISubjectOwnable>
     {
@@ -56,6 +66,9 @@ namespace Pdsr.Core.Domain
 
     /// <summary>
     /// BaseUser with string as TKey in <see cref="BaseEntity{TKey}"/>
+    /// BaseUser is an entity with the same value as Id and SubjectId.
+    /// Use <code>builder.Entity(e => e.Id).Ignore();</code> or <code>builder.Entity(e => e.SubjectId).Ignore();</code>
+    /// If you want to have only of these fields in the database.
     /// </summary>
     public abstract record class PdsrUserBaseSubjectId : PdsrUserBase<string>, ISubjectOwnable, IEquatable<ISubjectOwnable>, IEquatable<PdsrUserBase>, IEquatable<BaseEntity<string>>
     {

@@ -3,20 +3,30 @@ using System.Diagnostics;
 namespace Pdsr.Core.Domain;
 
 /// <summary>
-/// Any entity which can belong to a user with <see cref="SubjectId"/>.
+/// Entity base for the user ownnable objects
 /// </summary>
-public interface ISubjectOwnedEntityBase
+/// <typeparam name="TKey">Type of Id to use in this entity</typeparam>
+public abstract record class SubjectOwnedEntityBase<TKey> : BaseEntity<TKey>, ISubjectOwnable
+    where TKey : notnull
 {
-    public string SubjectId { get; set; }
+    public SubjectOwnedEntityBase(TKey id, string subjectId) : base(id)
+    {
+        SubjectId = subjectId;
+    }
+
+    /// <summary>
+    /// The subject id of the user owning this entity
+    /// </summary>
+    public string SubjectId { get; init; }
 }
 
-
 [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
-public abstract record class UserSubjectOwnedEntityBase : ISubjectOwnedEntityBase
+public abstract record class UserSubjectOwnedEntityBase : SubjectOwnedEntityBase<string>, ISubjectOwnable
 {
-    public UserSubjectOwnedEntityBase(string subjectId) => SubjectId = subjectId;
+    public UserSubjectOwnedEntityBase(string id, string subjectId) : base(id, subjectId)
+    {
 
-    public string SubjectId { get; set; }
+    }
 
     private string GetDebuggerDisplay()
     {

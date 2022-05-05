@@ -1,5 +1,3 @@
-using System;
-
 namespace Pdsr.Core.Domain;
 
 /// <summary>
@@ -7,9 +5,14 @@ namespace Pdsr.Core.Domain;
 /// All derived children are having equality compare based on Id field.
 /// override <see cref="GetHashCodeCore"/> to change the contract
 /// </summary>
-public abstract record BaseEntity : IEquatable<BaseEntity>, IBaseEntity
+public abstract record BaseEntity : BaseEntity<int>, IBaseEntity<int>, IBaseEntity, IEquatable<BaseEntity>, IEquatable<BaseEntity<int>>
 {
-    public int Id { get; set; }
+    /// <summary>
+    /// Ctor, uses base ctor to pass the parameter id.
+    /// </summary>
+    /// <param name="id"></param>
+    public BaseEntity(int id) : base(id) { }
+
 
     /// <summary>
     /// Returns a value indicating whether this instance is equal to a specified BaseEntity

@@ -1,15 +1,10 @@
-using Pdsr.Core.Domain;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using Pdsr.Core.Domain;
 
 namespace Pdsr.Hosting;
 
 /// <summary>
-/// TaskQueue
+/// TaskQueue with default user object.<see cref="PdsrUserBase{TKey}"/>
 /// </summary>
 public interface IBackgroundTaskQueue : IBackgroundTaskQueue<string, PdsrUserBase<string>>
 {
@@ -17,7 +12,7 @@ public interface IBackgroundTaskQueue : IBackgroundTaskQueue<string, PdsrUserBas
 }
 
 /// <summary>
-/// TaskQueue
+/// TaskQueue interface
 /// </summary>
 public interface IBackgroundTaskQueue<TKey, TUser>
     where TKey : notnull
@@ -57,7 +52,9 @@ public interface IBackgroundTaskQueue<TKey, TUser>
 }
 
 
-
+/// <summary>
+/// Simplest form of task queue
+/// </summary>
 public interface ISimpleBackgroundTaskQueue
 {
     /// <summary>
@@ -84,7 +81,7 @@ public interface IServiceProviderBackgroundTaskQueue
 
 
 /// <summary>
-/// TaskQueue to add Tasks
+/// User TaskQueue.
 /// </summary>
 public interface IUserBackgroundTaskQueue<TKey, TUser>
     where TKey : notnull

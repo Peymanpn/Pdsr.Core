@@ -1,7 +1,7 @@
 namespace Pdsr.Core.Domain;
 
 /// <summary>
-/// all inherited objects has interface
+/// all inherited objects has
 /// </summary>
 public interface ISubjectOwnable
 {
