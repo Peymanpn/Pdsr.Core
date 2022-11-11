@@ -1,6 +1,6 @@
 <Project>
     <PropertyGroup>
-        <LangVersion>10.0</LangVersion>
+        <LangVersion>11.0</LangVersion>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -26,9 +26,9 @@
 
     <PropertyGroup Label="Package Versions">
         <PkgCore>2.0.10</PkgCore>
-        <PkgData>2.1.14</PkgData>
-        <PkgCoreExtensions>1.2.9</PkgCoreExtensions>
-        <PkgHosting>1.11.8</PkgHosting>
+        <PkgData>2.2.0</PkgData>
+        <PkgCoreExtensions>1.3.0</PkgCoreExtensions>
+        <PkgHosting>1.12.0</PkgHosting>
     </PropertyGroup>
 
     <ItemGroup>
