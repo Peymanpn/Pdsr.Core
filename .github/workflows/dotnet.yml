@@ -32,7 +32,13 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release -p:SignAssembly=True --no-restore
     - name: Make packages
-      run: dotnet pack --no-build --no-restore --configuration Release -p:SignAssembly=True --output ./artifacts/
+      run: |
+        dotnet pack --no-build --no-restore --configuration Release -p:SignAssembly=True --output ./artifacts/ src/Pdsr.Core
+        dotnet pack --no-build --no-restore --configuration Release -p:SignAssembly=True --output ./artifacts/ src/Pdsr.Core.Extensions
+        dotnet pack --no-build --no-restore --configuration Release -p:SignAssembly=True --output ./artifacts/ src/Pdsr.Data
+        dotnet pack --no-build --no-restore --configuration Release -p:SignAssembly=True --output ./artifacts/ src/Pdsr.Hosting
+
+
     - name: Upload package artifacts
       uses: actions/upload-artifact@v2
       with:
