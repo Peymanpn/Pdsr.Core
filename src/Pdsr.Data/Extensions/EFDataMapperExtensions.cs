@@ -8,7 +8,7 @@ namespace Pdsr.Data.Extensions;
 public static class EFDataMapperExtensions
 {
     /// <summary>
-    /// configurs an Entity's property to hold SubjectId from database, having 36 characters and fixed length.
+    /// configures an Entity's property to hold SubjectId from database, having 36 characters and fixed length.
     /// </summary>
     /// <param name="builder">the property plan to apply</param>
     public static void IsSubjectId(this PropertyBuilder builder) => builder.HasMaxLength(36).IsRequired().IsFixedLength(true);
@@ -22,17 +22,17 @@ public static class EFDataMapperExtensions
     /// <param name="applyToTables">Applies to tables if set to true</param>
     /// <param name="applyToProperties">Applies to Properties (columns) if set to true</param>
     /// <param name="applyToPrimaryKeys">Applies to Primary Keys if set to true</param>
-    /// <param name="applyToForiegnKeys">Applies to Foreiegn Keys if set to true</param>
+    /// <param name="applyToForeignKeys">Applies to Foreign Keys if set to true</param>
     /// <param name="applyToIndexes">Applies to Indexes if set to true.</param>
     /// <returns></returns>
-    public static IMutableModel ApplySnakeCasingToEntities(this IMutableModel model, string? schema = null, bool applyToTables = true, bool applyToProperties = true, bool applyToPrimaryKeys = true, bool applyToForiegnKeys = true, bool applyToIndexes = true)
+    public static IMutableModel ApplySnakeCasingToEntities(this IMutableModel model, string? schema = null, bool applyToTables = true, bool applyToProperties = true, bool applyToPrimaryKeys = true, bool applyToForeignKeys = true, bool applyToIndexes = true)
     {
         foreach (var entity in model.GetEntityTypes())
         {
             if (applyToTables) entity.ApplySnakeCasingToTables(schema);
             if (applyToProperties) entity.ApplySnakeCasingToColumns();
             if (applyToPrimaryKeys) entity.ApplySnakeCasingToPrimaryKeys();
-            if (applyToForiegnKeys) entity.ApplySnakeCasingToForiegnKeys();
+            if (applyToForeignKeys) entity.ApplySnakeCasingToForeignKeys();
             if (applyToIndexes) entity.ApplySnakeCasingToIndexes();
         }
         return model;
@@ -68,6 +68,9 @@ public static class EFDataMapperExtensions
 
     private static void ApplySnakeCasingToPrimaryKeys(this IMutableEntityType entity)
     {
+        // Ignore JSON mapped entities
+        if (entity.IsMappedToJson()) return;
+
         foreach (var key in entity.GetKeys())
         {
             var snakeCasedName = key.GetName()?.ToSnakeCase();
@@ -79,16 +82,16 @@ public static class EFDataMapperExtensions
             key.SetName(snakeCasedName);
         }
     }
-    private static void ApplySnakeCasingToForiegnKeys(this IMutableEntityType entity)
+    private static void ApplySnakeCasingToForeignKeys(this IMutableEntityType entity)
     {
-        foreach (var foriegnKey in entity.GetForeignKeys())
+        foreach (var foreignKey in entity.GetForeignKeys())
         {
-            var snakeCasedConstaints = foriegnKey.GetConstraintName()?.ToSnakeCase();
-            if (snakeCasedConstaints is null)
+            var snakeCasedConstraints = foreignKey.GetConstraintName()?.ToSnakeCase();
+            if (snakeCasedConstraints is null)
             {
-                throw new NullReferenceException(snakeCasedConstaints);
+                throw new NullReferenceException(snakeCasedConstraints);
             }
-            foriegnKey.SetConstraintName(snakeCasedConstaints);
+            foreignKey.SetConstraintName(snakeCasedConstraints);
         }
     }
 
