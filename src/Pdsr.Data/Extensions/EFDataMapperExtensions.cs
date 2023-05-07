@@ -1,12 +1,14 @@
-using Pdsr.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Pdsr.Core.Extensions;
 
 namespace Pdsr.Data.Extensions;
 
 public static class EFDataMapperExtensions
 {
+    private const string _relationalCollumnNameAnnotation = "Relational:ColumnName";
+
     /// <summary>
     /// configures an Entity's property to hold SubjectId from database, having 36 characters and fixed length.
     /// </summary>
@@ -40,6 +42,7 @@ public static class EFDataMapperExtensions
 
     private static void ApplySnakeCasingToTables(this IMutableEntityType types, string? schema = null)
     {
+        // if (!Debugger.IsAttached) Debugger.Launch();
         var tableName = types.GetTableName();
 
         var properties = types.GetProperties();
@@ -62,7 +65,15 @@ public static class EFDataMapperExtensions
     {
         foreach (var property in entity.GetProperties())
         {
-            property.SetColumnName(property.Name.ToSnakeCase());
+            var annotationName = GetAnnotationName(property);
+            if (annotationName is not null)
+            {
+                property.SetColumnName(annotationName);
+            }
+            else
+            {
+                property.SetColumnName(property.Name.ToSnakeCase());
+            }
         }
     }
 
@@ -73,25 +84,34 @@ public static class EFDataMapperExtensions
 
         foreach (var key in entity.GetKeys())
         {
-            var snakeCasedName = key.GetName()?.ToSnakeCase();
-            if (snakeCasedName is null)
+            var keyName = GetAnnotationName(key);
+            if (keyName is null)
             {
-                throw new NullReferenceException(nameof(snakeCasedName));
+                keyName = key.GetName()?.ToSnakeCase();
+                if (keyName is null)
+                {
+                    throw new NullReferenceException(nameof(keyName));
+                }
             }
 
-            key.SetName(snakeCasedName);
+            key.SetName(keyName);
         }
     }
+
     private static void ApplySnakeCasingToForeignKeys(this IMutableEntityType entity)
     {
         foreach (var foreignKey in entity.GetForeignKeys())
         {
-            var snakeCasedConstraints = foreignKey.GetConstraintName()?.ToSnakeCase();
-            if (snakeCasedConstraints is null)
+            var foreignKeyName = GetAnnotationName(foreignKey);
+            if (foreignKeyName is null)
             {
-                throw new NullReferenceException(snakeCasedConstraints);
+                foreignKeyName = foreignKey.GetConstraintName()?.ToSnakeCase();
+                if (foreignKeyName is null)
+                {
+                    throw new NullReferenceException(foreignKeyName);
+                }
             }
-            foreignKey.SetConstraintName(snakeCasedConstraints);
+            foreignKey.SetConstraintName(foreignKeyName);
         }
     }
 
@@ -99,13 +119,31 @@ public static class EFDataMapperExtensions
     {
         foreach (var index in entity.GetIndexes())
         {
-            var snakeCasedIndex = index.GetDatabaseName()?.ToSnakeCase();
-            if (snakeCasedIndex is null)
+            var indexKeyName = GetAnnotationName(index);
+            if (indexKeyName is null)
             {
-                throw new NullReferenceException(nameof(snakeCasedIndex));
+                indexKeyName = index.GetDatabaseName()?.ToSnakeCase();
+                if (indexKeyName is null)
+                {
+                    throw new NullReferenceException(nameof(indexKeyName));
+                }
             }
 
-            index.SetDatabaseName(snakeCasedIndex);
+            index.SetDatabaseName(indexKeyName);
         }
     }
+
+    #region Utils
+    private static string? GetAnnotationName(IMutableAnnotatable annotatableObject)
+    {
+        var annotation = annotatableObject.FindAnnotation(_relationalCollumnNameAnnotation);
+        if (annotation is not null)
+        {
+            var annotationName = annotation.Value?.ToString() ?? throw new InvalidOperationException("Cannot get Annotation for object.");
+            return annotationName;
+        }
+
+        return null;
+    }
+    #endregion
 }
