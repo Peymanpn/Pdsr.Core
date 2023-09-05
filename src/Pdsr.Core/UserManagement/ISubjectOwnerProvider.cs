@@ -1,5 +1,4 @@
 using Pdsr.Core.Domain;
-using System;
 
 namespace Pdsr.Core.User;
 

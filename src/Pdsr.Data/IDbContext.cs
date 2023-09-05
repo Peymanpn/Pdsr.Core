@@ -1,7 +1,5 @@
-using Pdsr.Core.Domain;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
-using System.Threading.Tasks;
+using Pdsr.Core.Domain;
 
 namespace Pdsr.Data;
 

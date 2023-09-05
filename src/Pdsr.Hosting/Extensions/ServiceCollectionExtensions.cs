@@ -1,7 +1,6 @@
+using Microsoft.Extensions.DependencyInjection;
 using Pdsr.Core.Domain;
 using Pdsr.Core.User;
-using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
 
 namespace Pdsr.Hosting.Extensions;
 
