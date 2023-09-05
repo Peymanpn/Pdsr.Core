@@ -31,6 +31,10 @@ jobs:
     #     echo "NEWTAG=v$(projprops --project src/Directory.Build.props)" >> $GITHUB_ENV
     - name: Build
       run: dotnet build --configuration Release -p:SignAssembly=True --no-restore
+    - name: Test
+      run: |
+        dotnet test --no-build --no-restore --configuration Release
+
     - name: Make packages
       run: |
         dotnet pack --no-build --no-restore --configuration Release -p:SignAssembly=True --output ./artifacts/ src/Pdsr.Core
