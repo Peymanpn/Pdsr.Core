@@ -1,3 +1,3 @@
 # Pdsr Core Libraries
 
-Contains abstractions to unify dependant library and projects.
+Contains abstractions to unify dependent library and projects.
