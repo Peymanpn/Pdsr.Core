@@ -10,6 +10,6 @@ public interface IMappingConfiguration
     /// <summary>
     /// Apply the mapping configuration
     /// </summary>
-    /// <param name="modelBuilder">modelbuilder to apply config to</param>
+    /// <param name="modelBuilder">Model builder to apply config to</param>
     void ApplyConfiguration(ModelBuilder modelBuilder);
 }

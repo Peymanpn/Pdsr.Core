@@ -26,7 +26,7 @@ public interface IDbContext
     string GenerateCreateScript();
 
     /// <summary>
-    /// Detachs an entity from context
+    /// Detaches an entity from context
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <param name="entity"></param>

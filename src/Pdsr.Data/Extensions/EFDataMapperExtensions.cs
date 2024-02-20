@@ -7,7 +7,7 @@ namespace Pdsr.Data.Extensions;
 
 public static class EFDataMapperExtensions
 {
-    private const string _relationalCollumnNameAnnotation = "Relational:ColumnName";
+    private const string _relationalColumnNameAnnotation = "Relational:ColumnName";
 
     /// <summary>
     /// configures an Entity's property to hold SubjectId from database, having 36 characters and fixed length.
@@ -136,7 +136,7 @@ public static class EFDataMapperExtensions
     #region Utils
     private static string? GetAnnotationName(IMutableAnnotatable annotatableObject)
     {
-        var annotation = annotatableObject.FindAnnotation(_relationalCollumnNameAnnotation);
+        var annotation = annotatableObject.FindAnnotation(_relationalColumnNameAnnotation);
         if (annotation is not null)
         {
             var annotationName = annotation.Value?.ToString() ?? throw new InvalidOperationException("Cannot get Annotation for object.");

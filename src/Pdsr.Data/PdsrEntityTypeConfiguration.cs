@@ -11,7 +11,7 @@ namespace Pdsr.Data;
 public class PdsrEntityTypeConfiguration<TEntity> : IMappingConfiguration, IEntityTypeConfiguration<TEntity> where TEntity : BaseEntity
 {
     /// <summary>
-    /// for overrideing later
+    /// for overriding later
     /// </summary>
     /// <param name="builder"></param>
     protected virtual void PostConfiguration(EntityTypeBuilder<TEntity> builder) { }

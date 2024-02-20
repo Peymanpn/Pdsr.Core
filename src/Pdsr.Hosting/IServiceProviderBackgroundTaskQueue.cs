@@ -9,5 +9,11 @@ public interface IServiceProviderBackgroundTaskQueue
     /// </summary>
     /// <param name="workItem"></param>
     void QueueWorkItem(Func<IServiceProvider, CancellationToken, Task> workItem);
+
+    /// <summary>
+    /// Dequeues a task from queue
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     Task<Func<IServiceProvider, CancellationToken, Task>> DequeueTask(CancellationToken cancellationToken);
 }

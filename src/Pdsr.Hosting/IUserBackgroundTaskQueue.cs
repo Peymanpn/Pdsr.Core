@@ -9,7 +9,7 @@ public interface IUserBackgroundTaskQueue<TKey, TUser>
     where TUser : PdsrUserBase<TKey>, ISubjectOwnable
 {
     /// <summary>
-    /// Queues a User Specifiec Task for systems already implemented <see cref="Pdsr.Core.User.IUserServiceBase{TKey, TUser}"/>,
+    /// Queues a User Specific Task for systems already implemented <see cref="Pdsr.Core.User.IUserServiceBase{TKey, TUser}"/>,
     /// <see cref="PdsrUserBase"/> and <see cref="ISubjectOwnable"/> which is a superset of ISessionBase and Session
     /// </summary>
     /// <param name="sub"></param>

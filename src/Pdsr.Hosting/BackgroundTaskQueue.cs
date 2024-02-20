@@ -125,9 +125,9 @@ public class BackgroundTaskQueue : IBackgroundTaskQueue
 
 
 /// <summary>
-/// User specific Tasl Queue
+/// User specific Task Queue
 /// </summary>
-/// <typeparam name="TKey">User's Key type. it is usally same as subject id.<see cref="PdsrUserBase{TKey}.SubjectId"/></typeparam>
+/// <typeparam name="TKey">User's Key type. it is usually same as subject id.<see cref="PdsrUserBase{TKey}.SubjectId"/></typeparam>
 /// <typeparam name="TUser">The user type being used to load during queue work execution.<see cref="PdsrUserBase{TKey}"/></typeparam>
 public class BackgroundTaskQueue<TKey, TUser> : IBackgroundTaskQueue<TKey, TUser>
     where TKey : notnull

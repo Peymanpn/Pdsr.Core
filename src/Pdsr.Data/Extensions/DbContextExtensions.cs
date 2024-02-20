@@ -7,9 +7,9 @@ public static class DbContextExtensions
 {
 
     /// <summary>
-    /// Deatches a entity from a DbContext
+    /// Detaches a entity from a DbContext
     /// </summary>
-    /// <typeparam name="TEntity">Entity Type drived from <see cref="BaseEntity"/></typeparam>
+    /// <typeparam name="TEntity">Entity Type derived from <see cref="BaseEntity"/></typeparam>
     /// <param name="context">DbContext to detach entity from</param>
     /// <param name="entity">Entity to detach</param>
     public static void Detach<TEntity>(this DbContext context, TEntity entity)
@@ -36,8 +36,8 @@ public static class DbContextExtensions
     /// <summary>
     /// Detaches a collection of entities
     /// </summary>
-    /// <typeparam name="TEntity">Entity Type drived from <see cref="BaseEntity"/></typeparam>
-    /// <param name="context">DbContext to detach entitites from</param>
+    /// <typeparam name="TEntity">Entity Type derived from <see cref="BaseEntity"/></typeparam>
+    /// <param name="context">DbContext to detach entities from</param>
     /// <param name="entities">Entities to detach</param>
     public static void Detach<TEntity>(this DbContext context, IEnumerable<TEntity> entities)
         where TEntity : BaseEntity

@@ -1,11 +1,8 @@
-using Pdsr.Core.Domain;
-using Pdsr.Core.User;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
+using Pdsr.Core.Domain;
+using Pdsr.Core.User;
 
 namespace Pdsr.Hosting
 {
