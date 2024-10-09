@@ -25,9 +25,9 @@
 
     <PropertyGroup Label="Package Versions">
         <PkgCore>2.0.11</PkgCore>
-        <PkgData>2.4.0</PkgData>
-        <PkgCoreExtensions>1.5.0</PkgCoreExtensions>
-        <PkgHosting>1.14.0</PkgHosting>
+        <PkgData>2.4.1</PkgData>
+        <PkgCoreExtensions>1.5.1</PkgCoreExtensions>
+        <PkgHosting>1.14.1</PkgHosting>
     </PropertyGroup>
 
     <ItemGroup>
